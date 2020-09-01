@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <body id="page1">
+    <div class="main">
+    <header>
+		<div class="wrapper">
+			<h1><a href="index.xhtml" id="logo">Air lines</a></h1>
+			<span id="slogan">Fast, Frequent &amp; Safe Flights</span>
+			<nav id="top_nav">
+				<ul>
+					<li><a href="/Airline" class="nav1">Home</a></li>
+					<li><a href="#" class="nav2">Sitemap</a></li>
+					<li><a href="http://localhost:9999/Airline/faces/contacts.xhtml" class="nav3">Contact</a></li>
+                                       
+				</ul>
+                            
+                                <div class="btn-group navbar-right">
+                                    <c:if test="#{facesContext.externalContext.sessionMap.get('user') != null   }">
+                                        <h:form>
+                                        <button class="btn btn-info navbar-btn "><span class="glyphicon glyphicon-user"></span> #{facesContext.externalContext.sessionMap.get('user').name} </button>
+                                        <h:commandButton styleClass="btn btn-info navbar-btn" action="#{userBean.logout()}" value="LOG OUT" >
+                                        </h:commandButton>
+                                        </h:form>
+                                    </c:if>
+                                    <c:if test="#{facesContext.externalContext.sessionMap.get('user') == null   }">
+                                       <button class="btn btn-info navbar-btn ">
+                                           <a href="/Airline/faces/login.xhtml"><span class="glyphicon glyphicon-user"></span> SIGN IN </a>
+                                       </button>
+                                        <button class="btn btn-info navbar-btn" data-toggle="modal" data-target="#registerModalId">
+                                            <a href="/Airline/faces/register.xhtml"><span class="glyphicon glyphicon-check"></span> CREATE USER</a>
+                                        </button>
+                                    </c:if>   
+                                </div>
+			</nav>
+                        
+		</div>
+                
+		<nav>
+			<ul id="menu">
+                            <li id="menu_active"></li>
+                            <c:forEach var="cat" items="#{cateBean.categories}">
+                                <li id="menu_active"><a href="index?cate_id=#{cat.id}"><span><span>#{cat.name}</span></span></a></li>
+                            </c:forEach>
+				<!--<li id="menu_active"><a href="/Airline"><span><span>About</span></span></a></li>
+				<li><a href="http://localhost:9999/Airline/faces/offers.xhtml"><span><span>Offers</span></span></a></li>
+				<li><a href="http://localhost:9999/Airline/faces/books.xhtml"><span><span>Book</span></span></a></li>
+				<li><a href="http://localhost:9999/Airline/faces/services.xhtml"><span><span>Services</span></span></a></li>
+				<li><a href="http://localhost:9999/Airline/faces/safety.xhtml"><span><span>Safety</span></span></a></li>
+				<li class="end"><a href="http://localhost:9999/Airline/faces/contacts.xhtml"><span><span>Contacts</span></span></a></li>
+                                -->
+                        </ul>
+		</nav>
+	</header>
+    </div>
+    </body>
+</ui:composition>

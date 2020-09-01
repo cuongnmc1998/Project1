@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="base.xhtml">
+            <ui:define name="content">
+               <div class="container">
+                    <h3 class="text-center">#{pMsf['flights.admin']}</h3><br />
+                    <span class="right relative">
+                           <h:link  styleClass="btn btn-waring" value="#{pMsf['flights.add']}" outcome="flight?face-redirect=true"> </h:link>
+                    </span>
+                    <h:dataTable var="flight" styleClass="table" value="#{flightBean.flights}">
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsf['flights.id']}
+                            </f:facet>
+                            #{flight.id}
+                        </h:column>
+                           <h:column>
+                            <f:facet name="header">
+                                #{pMsf['flights.codeht']}
+                            </f:facet>
+                            #{flight.journey.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsf['flights.codemb']}
+                            </f:facet>
+                            #{flight.airline.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsf['flights.flighttime']}
+                            </f:facet>
+                            #{flight.flightTime}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            <h:form>
+                            <h:link value="#{pMsf['flights.update']}" includeViewParams="true" outcome="flight?faces-redirect=true">
+                            <f:param name="flight_id" value="#{flight.id}"/>
+                            </h:link>
+                                |
+                            <h:commandLink value="#{pMsf['flights.delete']}">
+                               <f:ajax />
+                            </h:commandLink>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

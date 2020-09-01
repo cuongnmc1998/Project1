@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="base.xhtml">
+            <ui:define name="content">
+               <div class="container">
+                    <h3 class="text-center">#{pMsj['journeys.admin']}</h3><br />
+                    <span class="right relative">
+                           <h:link  styleClass="btn btn-waring" value="#{pMsj['journeys.add']}" outcome="journey?face-redirect=true"> </h:link>
+                    </span>
+                    <h:dataTable var="journey" styleClass="table" value="#{journeyBean.journeys}">
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsj['journeys.id']}
+                            </f:facet>
+                            #{journey.id}
+                        </h:column>
+                           <h:column>
+                            <f:facet name="header">
+                                #{pMsj['journeys.pointaway']}
+                            </f:facet>
+                            #{journey.pointAway}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsj['journeys.destination']}
+                            </f:facet>
+                            #{journey.destination}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                #{pMsj['journeys.cost']}
+                            </f:facet>
+                            #{journey.cost}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            <h:form>
+                            <h:link value="#{pMsj['journeys.update']}" includeViewParams="true" outcome="journey?faces-redirect=true">
+                                <f:param name="journey_id" value="#{journey.id}"/>
+                            </h:link>
+                                |
+                            <h:commandLink value="#{pMsj['journeys.delete']}">
+                               <f:ajax />
+                            </h:commandLink>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="base.xhtml">
+            <ui:define name="content">
+                <div class="container">
+                <h:form>
+                    <div class="form-group">
+                        <h:outputLabel value="#{pMsg['products.flightH']}" />
+                        <h:inputText id="flightH" value="#{productBean.flightH}" styleClass="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="#{pMsg['products.dayT']}" />
+                        <h:inputText id="dayT" value="#{productBean.dayT}" styleClass="form-control">
+                            
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="#{pMsg['products.placeofsale']}" />
+                        <h:inputText id="placeofsale" value="#{productBean.placeofsale}" styleClass="form-control" > <f:validateRequired  /></h:inputText>
+                        
+                    
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="#{pMsg['products.price']}" />
+                        <h:inputText id="price" value="#{productBean.price}" styleClass="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <h:inputHidden  value="#{productBean.productId}"/>
+                        <h:commandButton value="Add Product" 
+                                         action="#{productBean.addProduct()}"
+                                         styleClass="btn-btn-warning"/>
+                    </div>     
+                </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
